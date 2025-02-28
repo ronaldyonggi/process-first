@@ -51,6 +51,7 @@ app.layout = html.Div(
             rowData=df.to_dict("records"),  # Convert DataFrame to list of dicts
             columnDefs=columnDefs,
             defaultColDef={"resizable": True},
+            dashGridOptions={"pagination": True, "paginationPageSize": 5},
         )
     ]
 )
