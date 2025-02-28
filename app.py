@@ -35,7 +35,12 @@ data = {
 df = pd.DataFrame(data)
 
 # Column definitions
-columnDefs = [{"field": "Name"}, {"field": "Age"}, {"field": "City"}]
+columnDefs = [
+    # Add filter and sorting functionalities
+    {"field": "Name", "filter": True, "sortable": True},
+    {"field": "Age", "filter": True, "sortable": True},
+    {"field": "City", "filter": True, "sortable": True},
+]
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
