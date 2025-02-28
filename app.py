@@ -6,9 +6,31 @@ import pandas as pd
 
 # Sample data using pandas DataFrame
 data = {
-    "Name": ["Alice", "Bob", "Charlie"],
-    "Age": [25, 30, 28],
-    "City": ["New York", "London", "Paris"],
+    "Name": [
+        "Alice",
+        "Bob",
+        "Charlie",
+        "David",
+        "Emily",
+        "Frank",
+        "Grace",
+        "Henry",
+        "Isabella",
+        "Jack",
+    ],
+    "Age": [25, 30, 28, 22, 35, 29, 27, 31, 26, 33],
+    "City": [
+        "New York",
+        "London",
+        "Paris",
+        "Tokyo",
+        "Sydney",
+        "Berlin",
+        "Rome",
+        "Madrid",
+        "Toronto",
+        "Dubai",
+    ],
 }
 df = pd.DataFrame(data)
 
