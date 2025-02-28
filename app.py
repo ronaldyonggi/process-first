@@ -50,6 +50,7 @@ app.layout = html.Div(
             id="my-table",
             rowData=df.to_dict("records"),  # Convert DataFrame to list of dicts
             columnDefs=columnDefs,
+            defaultColDef={"resizable": True},
         )
     ]
 )
