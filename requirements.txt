@@ -1,0 +1,4 @@
+dash
+dash-ag-grid
+dash-bootstrap-comp
+pandas
