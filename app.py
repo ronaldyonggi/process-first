@@ -1,60 +1,38 @@
 import dash
 import dash_ag_grid as dag
 import dash_bootstrap_components as dbc
-from dash import html
-import pandas as pd
+from dash import html, dcc
 
-# Sample data using pandas DataFrame
-data = {
-    "Name": [
-        "Alice",
-        "Bob",
-        "Charlie",
-        "David",
-        "Emily",
-        "Frank",
-        "Grace",
-        "Henry",
-        "Isabella",
-        "Jack",
-    ],
-    "Age": [25, 30, 28, 22, 35, 29, 27, 31, 26, 33],
-    "City": [
-        "New York",
-        "London",
-        "Paris",
-        "Tokyo",
-        "Sydney",
-        "Berlin",
-        "Rome",
-        "Madrid",
-        "Toronto",
-        "Dubai",
-    ],
-}
-df = pd.DataFrame(data)
+# Import the PaginatedTable class
+from components.paginated_table import PaginatedTable
 
-# Column definitions
-columnDefs = [
-    # Add filter and sorting functionalities
-    {"field": "Name", "filter": True, "sortable": True},
-    {"field": "Age", "filter": True, "sortable": True},
-    {"field": "City", "filter": True, "sortable": True},
-]
+# Import data functions
+from data.process_data import get_initial_edges, get_initial_nodes
 
+
+# Create Dash app instance and use Bootstrap's CSS styling
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-app.layout = html.Div(
+# --- Node Table ---
+node_table = PaginatedTable(id="node-table", dataframe=get_initial_nodes())
+
+# --- Edge Table ---
+edge_table = PaginatedTable(id="edge-table", dataframe=get_initial_edges())
+
+# --- Layout ---
+app.layout = dbc.Container(
     [
-        dag.AgGrid(
-            id="my-table",
-            rowData=df.to_dict("records"),  # Convert DataFrame to list of dicts
-            columnDefs=columnDefs,
-            defaultColDef={"resizable": True},
-            dashGridOptions={"pagination": True, "paginationPageSize": 5},
-        )
-    ]
+        html.H1("Process Flow Visualization"),
+        html.H2("Nodes"),
+        node_table.layout(),
+        html.H2("Edges"),
+        edge_table.layout(),
+        html.H2("Canvas"),  # Placeholder for canvas
+        html.Div(id="canvas-container"),  # Placeholder
+    ],
+    fluid=True, # Take up the full width of the page
 )
+
 
 if __name__ == "__main__":
     app.run(debug=True)
