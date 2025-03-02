@@ -1,4 +1,4 @@
 dash
 dash-ag-grid
-dash-bootstrap-comp
+dash-bootstrap-components
 pandas
