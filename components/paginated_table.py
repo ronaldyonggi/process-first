@@ -8,18 +8,23 @@ class PaginatedTable:
     Args:
         id (str): The unique ID of the table component.
         dataframe (pd.DataFrame): The pandas DataFrame containing the table data.
+        columnDefs (list, optional): Custom column definitions for AG Grid. Defaults to None.
         page_size (int, optional): The number of rows to display per page. Defaults to 5.
     """
 
-    def __init__(self, id, dataframe, page_size=5):
+    def __init__(self, id, dataframe, columnDefs = None, page_size=5):
         self.id = id
         self.dataframe = dataframe
         self.page_size = page_size
 
-        # Dynamically create column definitions based on DataFrame columns
-        self.columnDefs = [
-            {'field': col, 'filter': True, 'sortable': True} for col in dataframe.columns
-        ]
+        # Use provided columnDefs or generate default ones
+        if columnDefs is None:
+            self.columnDefs = [
+                {'field': col, 'filter': True, 'sortable': True} for col in dataframe.columns
+            ]
+        else:
+            self.columnDefs = columnDefs
+
 
     def layout(self):
         """
