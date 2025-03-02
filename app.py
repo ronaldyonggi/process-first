@@ -17,7 +17,24 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 node_table = PaginatedTable(id="node-table", dataframe=get_initial_nodes())
 
 # --- Edge Table ---
-edge_table = PaginatedTable(id="edge-table", dataframe=get_initial_edges())
+# Initial column definitions for the Edge table (will be updated by callback)
+initial_edge_column_defs = [
+    {
+        "field": "Upstream node",
+        "cellEditor": "agSelectCellEditor",
+        "cellEditorParams": {"values": []},
+    },
+    {
+        "field": "Downstream node",
+        "cellEditor": "agSelectCellEditor",
+        "cellEditorParams": {"values": []},
+    },
+]
+edge_table = PaginatedTable(
+    id="edge-table",
+    dataframe=get_initial_edges(),
+    columnDefs=initial_edge_column_defs,  # Use custom column definitions
+)
 
 # --- Layout ---
 app.layout = dbc.Container(
