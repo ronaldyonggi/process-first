@@ -51,6 +51,30 @@ app.layout = dbc.Container([
     dcc.Store(id='edge-store', data=get_initial_edges().to_dict('records')), # Add dcc.Store
 ], fluid=True)
 
+# --- Callback to update Edge Table dropdowns ---
+@app.callback(
+    Output('edge-table', 'columnDefs'),
+    Input('node-store', 'data')
+)
+def update_edge_table_dropdowns(node_data):
+    """
+    Updates the dropdown options in the Edge table based on the Node table data.
+
+    Args:
+        node_data (list): The data from the 'node-store' (list of dictionaries).
+
+    Returns:
+        list: The updated column definitions for the Edge table.
+    """
+    if node_data is None:
+        return initial_edge_column_defs
+
+    node_names = [node['Name'] for node in node_data]
+    new_column_defs = [
+        {'field': 'Upstream node', 'cellEditor': 'agSelectCellEditor', 'cellEditorParams': {'values': node_names}, 'editable': True},
+        {'field': 'Downstream node', 'cellEditor': 'agSelectCellEditor', 'cellEditorParams': {'values': node_names}, 'editable': True},
+    ]
+    return new_column_defs
 
 
 if __name__ == "__main__":
