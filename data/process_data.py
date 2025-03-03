@@ -23,7 +23,7 @@ def get_initial_edges():
     """
 
     data = {
-        'Upstram node': ['Node A', 'Node B'],
+        'Upstream node': ['Node A', 'Node B'],
         'Downstream node': ['Node B', 'Node C'],
     }
 
