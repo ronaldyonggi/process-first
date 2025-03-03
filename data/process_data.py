@@ -9,7 +9,7 @@ def get_initial_nodes():
     """
     data = {
         "Name": ['Node A', 'Node B', 'Node C'],
-        "Type": ['type1', 'type2', 'type1']
+        "Type": ['type1', 'type2', 'type3']
     }
 
     return pd.DataFrame(data)
