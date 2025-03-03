@@ -1,7 +1,7 @@
 import dash
 import dash_ag_grid as dag
 import dash_bootstrap_components as dbc
-from dash import html, dcc
+from dash import html, dcc, Input, Output, State
 
 # Import the PaginatedTable class
 from components.paginated_table import PaginatedTable
