@@ -39,18 +39,18 @@ edge_table = PaginatedTable(
 )
 
 # --- Layout ---
-app.layout = dbc.Container(
-    [
-        html.H1("Process Flow Visualization"),
-        html.H2("Nodes"),
-        node_table.layout(),
-        html.H2("Edges"),
-        edge_table.layout(),
-        html.H2("Canvas"),  # Placeholder for canvas
-        html.Div(id="canvas-container"),  # Placeholder
-    ],
-    fluid=True, # Take up the full width of the page
-)
+app.layout = dbc.Container([
+    html.H1("Process Flow Visualization"),
+    html.H2("Nodes"),
+    node_table.layout(),
+    html.H2("Edges"),
+    edge_table.layout(),
+    html.H2("Canvas"),
+    html.Div(id='canvas-container'),
+    dcc.Store(id='node-store', data=get_initial_nodes().to_dict('records')), # Add dcc.Store
+    dcc.Store(id='edge-store', data=get_initial_edges().to_dict('records')), # Add dcc.Store
+], fluid=True)
+
 
 
 if __name__ == "__main__":
