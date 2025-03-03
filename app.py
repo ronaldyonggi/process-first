@@ -23,11 +23,13 @@ initial_edge_column_defs = [
         "field": "Upstream node",
         "cellEditor": "agSelectCellEditor",
         "cellEditorParams": {"values": []},
+        "editable": True
     },
     {
         "field": "Downstream node",
         "cellEditor": "agSelectCellEditor",
         "cellEditorParams": {"values": []},
+        "editable": True
     },
 ]
 edge_table = PaginatedTable(
